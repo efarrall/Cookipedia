@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Photo Capture</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        
+        /* Center the camera preview and add a white border */
+        video {
+            width: 80%; /* Set a fixed width (adjust as needed) */
+            max-width: 640px;
+            display: block;
+            margin: 0 auto; /* Center horizontally */
+            border: 2px solid white; /* Add a white border */
+            border-radius: 10px; /* Add rounded corners */
+        }
+        
+        /* Rectangular button with rounded sides */
+        button {
+            margin-top: 10px;
+            background: gray; /* Gray background */
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold; /* Bold text */
+            line-height: 1.5;
+            border: 2px solid white; /* Add a white border */
+            border-radius: 15px; /* Curved sides */
+        }
+        
+        #retake {
+            display: none; /* Initially hide the Retake button */
+        }
+    </style>
+</head>
+<body>
+    <h1>Camera Photo Capture</h1>
+    <video id="camera" autoplay></video>
+    <button id="capture">Capture Photo</button>
+    <button id="retake">Retake</button>
+    <img id="photo" alt="Captured Photo">
+
+    <script>
+        // JavaScript code for capturing photos goes here
+        const video = document.getElementById('camera');
+        const captureButton = document.getElementById('capture');
+        const retakeButton = document.getElementById('retake');
+        const photo = document.getElementById('photo');
+
+        navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (error) {
+                console.error('Error accessing the camera:', error);
+            });
+
+        captureButton.addEventListener('click', function () {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Display the captured photo in the <img> element
+            photo.src = canvas.toDataURL('image/jpeg');
+
+            // Hide the live preview
+            video.style.display = 'none';
+
+            // Show the Retake button
+            retakeButton.style.display = 'inline';
+        });
+
+        retakeButton.addEventListener('click', function () {
+            // Show the live preview
+            video.style.display = 'block';
+
+            // Hide the Retake button
+            retakeButton.style.display = 'none';
+
+            // Clear the captured photo
+            photo.src = '';
+        });
+    </script>
+</body>
+</html>

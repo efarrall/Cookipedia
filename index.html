@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COOKIPEDIA</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            background: url('bluewhite.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(10px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 1;
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 7em;
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #000; /* Black */
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background-color: #000; /* Black */
+            margin: 20px auto;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background: transparent;
+            border: 2px solid #000; /* Black */
+            border-radius: 50px;
+            width: 250px;
+            height: 80px;
+            margin: 10px;
+            font-family: 'Verdana', Arial, sans-serif;
+            color: #000; /* Black */
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #000; /* Black */
+            color: #fff;
+        }
+
+        .cuisine-buttons {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cuisine-button {
+            background: transparent;
+            border: 2px solid #000; /* Black */
+            border-radius: 50px;
+            width: 150px;
+            height: 50px;
+            margin: 10px;
+            font-family: 'Verdana', Arial, sans-serif;
+            color: #000; /* Black */
+            transition: all 0.3s;
+        }
+
+        .cuisine-button:hover {
+            background: #000; /* Black */
+            color: #fff;
+        }
+
+        .back-button {
+            background: #000; /* Black */
+            border: none;
+            border-radius: 10px;
+            width: 100px;
+            height: 40px;
+            margin: 10px;
+            font-family: 'Verdana', Arial, sans-serif;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #111; /* Slightly darker black on hover */
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <video autoplay muted loop>
+        <source src="bluewhite.mp4" type="video/mp4">
+    </video>
+    <div class="content">
+        <h1>COOKIPEDIA</h1>
+        <h3>Snap.Match.Cook</h3>
+        <hr class="divider">
+        <div class="btn-container">
+            <button class="btn" id="pickCuisineBtn">Pick a Cuisine</button>
+            <button class="btn" id="anyCuisineBtn">Any Cuisine</button>
+        </div>
+
+        <div class="cuisine-buttons" id="cuisineButtons">
+            <button class="cuisine-button">Indian</button>
+            <button class="cuisine-button">French</button>
+            <button class="cuisine-button">Chinese</button>
+            <button class="cuisine-button">Italian</button>
+            <button class="cuisine-button">Japanese</button>
+            <button class="cuisine-button">Mexican</button>
+            <button class="cuisine-button">Thai</button>
+            <button class="cuisine-button">Greek</button>
+            <button class="cuisine-button">Mediterranean</button>
+            <button class="cuisine-button">Spanish</button>
+            <button class="cuisine-button">Vietnamese</button>
+            <button class="cuisine-button">Korean</button>
+            <button class="cuisine-button">American</button>
+            <button class="cuisine-button">Turkish</button>
+            <button class="cuisine-button">Ukranian</button>
+            <button class="cuisine-button">Brazilian</button>
+            <button class="cuisine-button">Moroccan</button>
+            <button class="cuisine-button">Russian</button>
+            <button class="cuisine-button">Peruvian</button>
+            <button class="cuisine-button">Polish</button>
+            <button class="back-button" id="backButton">Back</button>
+        </div>
+    </div>
+
+    <script>
+        const pickCuisineBtn = document.getElementById("pickCuisineBtn");
+        const cuisineButtons = document.getElementById("cuisineButtons");
+        const backButton = document.getElementById("backButton");
+
+        pickCuisineBtn.addEventListener("click", function () {
+            pickCuisineBtn.style.display = "none";
+            cuisineButtons.style.display = "flex";
+        });
+
+        backButton.addEventListener("click", function () {
+            pickCuisineBtn.style.display = "block";
+            cuisineButtons.style.display = "none";
+        });
+    </script>
+</body>
+</html>
