@@ -4,4 +4,4 @@ Pillow
 opencv-python
 torch
 matplotlib
--e git://github.com/facebookresearch/segment-anything
+segment-anything @ git+https://github.com/facebookresearch/segment-anything.git@6fdee8f2727f4506cfbbe553e23b895e27956588
